@@ -7,7 +7,11 @@ val testDependencies = Seq(
   "org.scalacheck" %% "scalacheck" % "1.14.3",
   "org.scalameta" %% "munit" % "0.7.2",
   "org.scalameta" %% "munit-scalacheck" % "0.7.2",
-  "co.nstant.in" % "cbor" % "0.9"
+  "co.nstant.in" % "cbor" % "0.9",
+  "org.typelevel" %% "cats-core" % "2.1.1",
+  "org.typelevel" %% "cats-effect" % "2.1.2",
+  "org.http4s" %% "http4s-dsl" % "0.21.3",
+  "org.http4s" %% "http4s-blaze-client" % "0.21.3"
 )
 
 val baseSettings = Seq(
@@ -182,7 +186,7 @@ lazy val tests = project
     testOptions.in(Slow) -= Tests.Argument("--exclude-tags=Slow"),
     testOptions.in(Slow) += Tests.Argument("--include-tags=Slow")
   )
-  .dependsOn(scala, importsMini, testing)
+  .dependsOn(scala, imports, testing)
 
 lazy val benchmarks = project
   .in(file("benchmarks"))
